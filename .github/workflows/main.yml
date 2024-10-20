@@ -1,1 +1,22 @@
+name: test and deploy
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: action/checkout@3
+      - name: install nodejs
+        uses: action/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependency
+        run: npm ci
+      - name: lint
+        run: npm lint
+      - name: test
+        run: npm test
+      - name: build
+        run: npm build
+
 
